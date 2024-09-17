@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Picker Form</title>
+    <!-- Add Roboto font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F7FAFF;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border: 1px solid #E8F0FF;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            flex: 1;
+            font-weight: 500;
+        }
+        .form-group input[type="color"],
+        .form-group input[type="text"] {
+            flex: 2;
+            padding: 5px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .url-preview {
+            background-color: #f3f3f3;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            word-break: break-all;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .url-preview input {
+            border: none;
+            background: transparent;
+            flex: 1;
+            margin-right: 10px;
+            font-family: monospace;
+        }
+        .copy-button {
+            padding: 5px 10px;
+            background-color: #03A9F4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .copy-button:hover {
+            background-color: #0288D1;
+        }
+        iframe {
+            width: 100%;
+            height: 1000px;
+            border: 0;
+        }
+        @media (max-width: 600px) {
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-group input[type="color"],
+            .form-group input[type="text"] {
+                margin-left: 0;
+                margin-top: 5px;
+                width: 100%;
+            }
+            .url-preview {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .copy-button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="colorForm">
+            <div class="form-group">
+                <label for="bgColorPrimary">Background Color Primary:</label>
+                <input type="color" id="bgColorPrimary" name="bgColorPrimary" value="#F7FAFF">
+                <input type="text" id="bgColorPrimaryHex" name="bgColorPrimaryHex" value="#F7FAFF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+            </div>
+            <div class="form-group">
+                <label for="bgColorSecondary">Background Color Secondary:</label>
+                <input type="color" id="bgColorSecondary" name="bgColorSecondary" value="#FFFFFF">
+                <input type="text" id="bgColorSecondaryHex" name="bgColorSecondaryHex" value="#FFFFFF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+            </div>
+            <div class="form-group">
+                <label for="borderColor">Border Color:</label>
+                <input type="color" id="borderColor" name="borderColor" value="#E8F0FF">
+                <input type="text" id="borderColorHex" name="borderColorHex" value="#E8F0FF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+            </div>
+            <div class="form-group">
+                <label for="ctaPrimary">CTA Primary:</label>
+                <input type="color" id="ctaPrimary" name="ctaPrimary" value="#03A9F4">
+                <input type="text" id="ctaPrimaryHex" name="ctaPrimaryHex" value="#03A9F4" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+            </div>
+            <div class="form-group">
+                <label for="ctaFontColor">CTA Font Color:</label>
+                <input type="color" id="ctaFontColor" name="ctaFontColor" value="#000000">
+                <input type="text" id="ctaFontColorHex" name="ctaFontColorHex" value="#000000" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+            </div>
+            <div class="form-group">
+                <label for="fontColorPrimary">Font Color Primary:</label>
+                <input type="color" id="fontColorPrimary" name="fontColorPrimary" value="#000000">
+                <input type="text" id="fontColorPrimaryHex" name="fontColorPrimaryHex" value="#000000" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+            </div>
+            <div class="form-group">
+                <label for="fontColorSecondary">Font Color Secondary:</label>
+                <input type="color" id="fontColorSecondary" name="fontColorSecondary" value="#6B7483">
+                <input type="text" id="fontColorSecondaryHex" name="fontColorSecondaryHex" value="#6B7483" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+            </div>
+        </form>
+        <div class="url-preview">
+            <input type="text" id="urlPreview" readonly>
+            <button class="copy-button" onclick="copyURL()">Copy</button>
+        </div>
+    </div>
+
+    <iframe id="iframePreview" src="https://pr-769.pr.tokentool.bitbond.net/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86?chainId=80002&bgColorPrimary=F7FAFF&bgColorSecondary=FFFFFF&fontColorPrimary=000000&fontColorSecondary=6B7483&borderColor=E8F0FF&ctaPrimary=03A9F4&ctaFontColor=000000&previewAllStates=true" width="100%" height="1000px" frameborder="0" name="tokensale"></iframe>
+
+    <script>
+        const form = document.getElementById('colorForm');
+        const iframe = document.getElementById('iframePreview');
+        const urlPreview = document.getElementById('urlPreview');
+
+        const baseUrl = 'https://pr-769.pr.tokentool.bitbond.net/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86';
+        const fixedParams = {
+            chainId: '80002',
+            previewAllStates: 'true'
+        };
+
+        function updateIframe() {
+            const params = new URLSearchParams(fixedParams);
+
+            const colorFields = [
+                'bgColorPrimary',
+                'bgColorSecondary',
+                'borderColor',
+                'ctaPrimary',
+                'ctaFontColor',
+                'fontColorPrimary',
+                'fontColorSecondary'
+            ];
+
+            colorFields.forEach(field => {
+                const color = document.getElementById(field).value.substring(1);
+                params.set(field, color.toUpperCase());
+            });
+
+            const newSrc = `${baseUrl}?${params.toString()}`;
+            iframe.src = newSrc;
+            urlPreview.value = newSrc;
+        }
+
+        function copyURL() {
+            const copyText = urlPreview.value;
+            navigator.clipboard.writeText(copyText).then(() => {
+                alert('URL copied to clipboard!');
+            }, () => {
+                alert('Failed to copy URL.');
+            });
+        }
+
+        // Sync color picker and hex input
+        function syncField(field) {
+            const colorInput = document.getElementById(field);
+            const hexInput = document.getElementById(field + 'Hex');
+
+            colorInput.addEventListener('input', () => {
+                hexInput.value = colorInput.value.toUpperCase();
+                updateIframe();
+            });
+
+            hexInput.addEventListener('input', () => {
+                let value = hexInput.value;
+                if (!value.startsWith('#')) {
+                    value = '#' + value;
+                }
+                if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
+                    colorInput.value = value;
+                    updateIframe();
+                }
+            });
+        }
+
+        const fields = [
+            'bgColorPrimary',
+            'bgColorSecondary',
+            'borderColor',
+            'ctaPrimary',
+            'ctaFontColor',
+            'fontColorPrimary',
+            'fontColorSecondary'
+        ];
+
+        fields.forEach(syncField);
+
+        // Initialize URL preview
+        updateIframe();
+    </script>
+</body>
+</html>

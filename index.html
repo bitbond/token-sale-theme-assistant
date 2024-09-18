@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Color Picker Form</title>
-    <!-- Add Roboto font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <style>
         body {
@@ -128,6 +127,12 @@
                 <span id="chainIdDisplay">Loading...</span>
             </div>
 
+            <hr />
+            <h3>Color Settings</h3>
+            <p>Adjust the colors of the token sale to match your brand or preferences.
+              <b>NOTE:</b> The selected colors are not saved, remember to copy the iframe snippet
+              or URL below before closing this page.</p>
+
             <!-- Existing Color Fields -->
             <div class="form-group">
                 <label for="bgColorPrimary">Background Color Primary:</label>
@@ -165,14 +170,20 @@
                 <input type="text" id="fontColorSecondaryHex" name="fontColorSecondaryHex" value="#6B7483" maxlength="7" pattern="#[0-9a-fA-F]{6}">
             </div>
         </form>
-        <div class="url-preview">
-            <a id="urlPreview" href="#" target="_blank">URL Preview</a>
-            <button class="copy-button" onclick="copyURL()">Copy</button>
-        </div>
+
+        <hr />
+        <h3>Iframe Snippet</h3>
+        <p>Copy and paste this HTML snippet into your website to display the token sale.</p>
         <div class="url-preview">
             <textarea id="iframeSnippet" readonly placeholder="Iframe Snippet"></textarea>
             <button class="copy-button" onclick="copyIFrame()">Copy</button>
-        </div>
+          </div>
+          <h3>Direct link to the token sale</h3>
+          <p>If you'd rather share the sale direcly without embedding it, you can use the following link.</p>
+          <div class="url-preview">
+              <a id="urlPreview" href="#" target="_blank">URL Preview</a>
+              <button class="copy-button" onclick="copyURL()">Copy</button>
+          </div>
 
         <!-- Added Message for Missing Parameters -->
         <div id="missingParamsMessage" style="display: none; color: red; text-align: center;">

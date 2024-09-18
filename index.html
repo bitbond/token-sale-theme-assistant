@@ -49,13 +49,30 @@
             align-items: center;
             justify-content: space-between;
         }
-        .url-preview input {
+        .url-preview a#urlPreview {
             border: none;
-            background: transparent;
+            background-color: transparent;
+            color: #03A9F4;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: monospace;
+            flex: 1;
+            margin-right: 10px;
+            white-space: break-spaces; /* Allows text to wrap */
+            word-break: break-word; /* Breaks long words */
+            min-height: 60px; /* Ensures sufficient height */
+            display: block;
+        }
+        .url-preview textarea {
+            border: none;
+            background-color: #f3f3f3;
             flex: 1;
             margin-right: 10px;
             font-family: monospace;
-            height: 40px; /* Increased height to display full URL */
+            height: auto;
+            min-height: 60px; /* Adjust as needed */
+            resize: none; /* Prevents resizing */
+            overflow: hidden;
         }
         .copy-button {
             padding: 5px 10px;
@@ -149,8 +166,12 @@
             </div>
         </form>
         <div class="url-preview">
-            <input type="text" id="urlPreview" readonly>
+            <a id="urlPreview" href="#" target="_blank">URL Preview</a>
             <button class="copy-button" onclick="copyURL()">Copy</button>
+        </div>
+        <div class="url-preview">
+            <textarea id="iframeSnippet" readonly placeholder="Iframe Snippet"></textarea>
+            <button class="copy-button" onclick="copyIFrame()">Copy</button>
         </div>
 
         <!-- Added Message for Missing Parameters -->
@@ -211,7 +232,16 @@
 
                 const newSrc = `${baseDomain}/${tokenSaleAddress}?${params.toString()}`;
                 iframe.src = newSrc;
-                urlPreview.value = newSrc;
+
+                // Update the clickable link
+                urlPreview.href = newSrc;
+                urlPreview.textContent = newSrc;
+
+                // Set iframe snippet
+                const iframeSnippet = `<iframe src="${newSrc}" width="100%" height="1000px" frameborder="0" name="tokensale"></iframe>`;
+                const iframeTextarea = document.getElementById('iframeSnippet');
+                iframeTextarea.value = iframeSnippet;
+                autoResizeTextarea(iframeTextarea);
 
                 // Show iframe and hide message
                 iframe.style.display = 'block';
@@ -220,17 +250,28 @@
                 // Hide iframe and show message
                 iframe.style.display = 'none';
                 missingParamsMessage.style.display = 'block';
-                urlPreview.value = '';
+                urlPreview.href = '#';
+                urlPreview.textContent = 'URL Preview';
+                document.getElementById('iframeSnippet').value = '';
             }
         }
 
         function copyURL() {
-            const copyText = urlPreview.value;
+            const copyText = urlPreview.href !== window.location.href ? urlPreview.href : '';
             if (copyText) {
                 navigator.clipboard.writeText(copyText).then(() => {
-                    alert('URL copied to clipboard!');
                 }, () => {
                     alert('Failed to copy URL.');
+                });
+            }
+        }
+
+        function copyIFrame() {
+            const copyText = document.getElementById('iframeSnippet').value;
+            if (copyText) {
+                navigator.clipboard.writeText(copyText).then(() => {
+                }, () => {
+                    alert('Failed to copy iframe snippet.');
                 });
             }
         }
@@ -257,6 +298,11 @@
             });
         }
 
+        function autoResizeTextarea(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+
         // Initialize form with URL parameters
         window.addEventListener('DOMContentLoaded', () => {
             updateIframe();
@@ -273,6 +319,12 @@
             ];
 
             colorFields.forEach(syncField);
+
+            // Auto-resize textareas on input
+            const textareas = document.querySelectorAll('.url-preview textarea');
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', () => autoResizeTextarea(textarea));
+            });
         });
     </script>
 </body>

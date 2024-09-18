@@ -109,12 +109,10 @@
       line-height: 24px;
       font-weight: 300;
     }
-    h1, h3 {
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      line-height: 24px;
+    h1, h2, h3 {
       font-weight: 500;
     }
+
     p {
       font-size: 14px;
       line-height: 24px;
@@ -163,9 +161,10 @@
       <hr />
       <h3>Color Settings</h3>
       <p>
-        See below for token sale preview and adjust the colors of the token sale to match your brand or preferences.
-        <b>NOTE:</b> The selected colors are not saved; remember to copy the iframe snippet
-        or URL below before closing this page.
+        See below for token sale preview and adjust the colors of the token sale
+        to match your brand or preferences.
+        <b>NOTE:</b> The selected colors are not saved; remember to copy the
+        iframe snippet or direct link to the token sale below before closing this page.
       </p>
       <div class="form-group">
         <label for="bgColorPrimary">Background Color Primary:</label>
@@ -203,10 +202,15 @@
         <input type="text" id="fontColorSecondaryHex" name="fontColorSecondaryHex" value="#6B7483" maxlength="7" pattern="#[0-9a-fA-F]{6}">
       </div>
     </form>
+    <hr />
+    <h3>Iframe Snippet</h3>
+    <p>Copy and paste this HTML snippet into your website to display the token sale.</p>
     <div class="url-preview">
       <textarea id="iframeSnippet" readonly placeholder="Iframe Snippet"></textarea>
       <button class="copy-button" onclick="copyIFrame(event)">Copy</button>
     </div>
+    <h3>Direct link to the token sale</h3>
+    <p>If you'd rather share the sale direcly without embedding it, you can use the following link.</p>
     <div class="url-preview">
       <a id="urlPreview" href="#" target="_blank">URL Preview</a>
       <button class="copy-button" onclick="copyURL(event)">Copy</button>

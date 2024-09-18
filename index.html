@@ -1,400 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Color Picker Form</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #F7FAFF;
-            margin: 0;
-            padding: 20px;
-            font-size: 14px;
-            line-height: 24px;
-            font-weight: 300;
-        }
-        .form-container {
-            background-color: #FFFFFF;
-            padding: 20px;
-            border: 1px solid #E8F0FF;
-            border-radius: 8px;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: 500;
-            flex: 1;
-        }
-        .form-group input[type="color"],
-        .form-group input[type="text"],
-        .form-group input[type="number"] {
-            flex: 2;
-            padding: 5px;
-            margin-left: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            line-height: 24px;
-            font-weight: 300;
-        }
-        .url-preview {
-            background-color: #f3f3f3;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            word-break: break-all;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .url-preview a#urlPreview {
-            border: none;
-            background-color: transparent;
-            color: #03A9F4;
-            text-decoration: underline;
-            cursor: pointer;
-            font-family: monospace;
-            flex: 1;
-            margin-right: 10px;
-            white-space: break-spaces;
-            word-break: break-word;
-            min-height: 60px;
-            display: block;
-            font-size: 14px;
-            line-height: 24px;
-            font-weight: 300;
-        }
-        .url-preview textarea {
-            border: none;
-            background-color: #f3f3f3;
-            flex: 1;
-            margin-right: 10px;
-            font-family: monospace;
-            height: auto;
-            min-height: 60px;
-            resize: none;
-            overflow: hidden;
-            font-size: 14px;
-            line-height: 24px;
-            font-weight: 300;
-        }
-        .copy-button {
-            padding: 5px 10px;
-            background-color: #03A9F4;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            line-height: 24px;
-            font-weight: 300;
-        }
-        .copy-button:hover {
-            background-color: #0288D1;
-        }
-        iframe {
-            width: 100%;
-            height: 1000px;
-            border: 0;
-            font-size: 14px;
-            line-height: 24px;
-            font-weight: 300;
-        }
-        h1, h3 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: 500;
-        }
-        p {
-            font-size: 14px;
-            line-height: 24px;
-            font-weight: 300;
-        }
-        @media (max-width: 600px) {
-            .form-group {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .form-group input[type="color"],
-            .form-group input[type="text"],
-            .form-group input[type="number"] {
-                margin-left: 0;
-                margin-top: 5px;
-                width: 100%;
-                font-size: 14px;
-                line-height: 24px;
-                font-weight: 300;
-            }
-            .url-preview {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .copy-button {
-                width: 100%;
-                margin-top: 10px;
-                font-size: 14px;
-                line-height: 24px;
-                font-weight: 300;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Color Picker Form</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #F7FAFF;
+      margin: 0;
+      padding: 20px;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 300;
+    }
+    .form-container {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border: 1px solid #E8F0FF;
+      border-radius: 8px;
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      flex: 1;
+    }
+    .form-group input[type="color"],
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+      flex: 2;
+      padding: 5px;
+      margin-left: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 300;
+    }
+    .url-preview {
+      background-color: #f3f3f3;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      word-break: break-all;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .url-preview a#urlPreview {
+      border: none;
+      background-color: transparent;
+      color: #03A9F4;
+      text-decoration: underline;
+      cursor: pointer;
+      font-family: monospace;
+      flex: 1;
+      margin-right: 10px;
+      white-space: break-spaces;
+      word-break: break-word;
+      min-height: 60px;
+      display: block;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 300;
+    }
+    .url-preview textarea {
+      border: none;
+      background-color: #f3f3f3;
+      flex: 1;
+      margin-right: 10px;
+      font-family: monospace;
+      height: auto;
+      min-height: 60px;
+      resize: none;
+      overflow: hidden;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 300;
+    }
+    .copy-button {
+      padding: 5px 10px;
+      background-color: #03A9F4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 300;
+    }
+    .copy-button:hover {
+      background-color: #0288D1;
+    }
+    iframe {
+      width: 100%;
+      height: 1000px;
+      border: 0;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 300;
+    }
+    h1, h3 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+    }
+    p {
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 300;
+    }
+    @media (max-width: 600px) {
+      .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .form-group input[type="color"],
+      .form-group input[type="text"],
+      .form-group input[type="number"] {
+        margin-left: 0;
+        margin-top: 5px;
+        width: 100%;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 300;
+      }
+      .url-preview {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .copy-button {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 300;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="form-container">
-        <form id="colorForm">
-            <div class="form-group">
-                <label>Token Sale Address:</label>
-                <span id="tokenSaleAddressDisplay">Loading...</span>
-            </div>
-            <div class="form-group">
-                <label>Chain ID:</label>
-                <span id="chainIdDisplay">Loading...</span>
-            </div>
-            <hr />
-            <h3>Color Settings</h3>
-            <p>
-                See below for token sale preview and adjust the colors of the token sale to match your brand or preferences.
-                <b>NOTE:</b> The selected colors are not saved; remember to copy the iframe snippet
-                or URL below before closing this page.
-            </p>
-            <div class="form-group">
-                <label for="bgColorPrimary">Background Color Primary:</label>
-                <input type="color" id="bgColorPrimary" name="bgColorPrimary" value="#F7FAFF">
-                <input type="text" id="bgColorPrimaryHex" name="bgColorPrimaryHex" value="#F7FAFF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
-            </div>
-            <div class="form-group">
-                <label for="bgColorSecondary">Background Color Secondary:</label>
-                <input type="color" id="bgColorSecondary" name="bgColorSecondary" value="#FFFFFF">
-                <input type="text" id="bgColorSecondaryHex" name="bgColorSecondaryHex" value="#FFFFFF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
-            </div>
-            <div class="form-group">
-                <label for="borderColor">Border Color:</label>
-                <input type="color" id="borderColor" name="borderColor" value="#E8F0FF">
-                <input type="text" id="borderColorHex" name="borderColorHex" value="#E8F0FF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
-            </div>
-            <div class="form-group">
-                <label for="ctaPrimary">CTA Primary:</label>
-                <input type="color" id="ctaPrimary" name="ctaPrimary" value="#03A9F4">
-                <input type="text" id="ctaPrimaryHex" name="ctaPrimaryHex" value="#03A9F4" maxlength="7" pattern="#[0-9a-fA-F]{6}">
-            </div>
-            <div class="form-group">
-                <label for="ctaFontColor">CTA Font Color:</label>
-                <input type="color" id="ctaFontColor" name="ctaFontColor" value="#000000">
-                <input type="text" id="ctaFontColorHex" name="ctaFontColorHex" value="#000000" maxlength="7" pattern="#[0-9a-fA-F]{6}">
-            </div>
-            <div class="form-group">
-                <label for="fontColorPrimary">Font Color Primary:</label>
-                <input type="color" id="fontColorPrimary" name="fontColorPrimary" value="#000000">
-                <input type="text" id="fontColorPrimaryHex" name="fontColorPrimaryHex" value="#000000" maxlength="7" pattern="#[0-9a-fA-F]{6}">
-            </div>
-            <div class="form-group">
-                <label for="fontColorSecondary">Font Color Secondary:</label>
-                <input type="color" id="fontColorSecondary" name="fontColorSecondary" value="#6B7483">
-                <input type="text" id="fontColorSecondaryHex" name="fontColorSecondaryHex" value="#6B7483" maxlength="7" pattern="#[0-9a-fA-F]{6}">
-            </div>
-        </form>
-        <div class="url-preview">
-            <textarea id="iframeSnippet" readonly placeholder="Iframe Snippet"></textarea>
-            <button class="copy-button" onclick="copyIFrame(event)">Copy</button>
-        </div>
-        <div class="url-preview">
-            <a id="urlPreview" href="#" target="_blank">URL Preview</a>
-            <button class="copy-button" onclick="copyURL(event)">Copy</button>
-        </div>
-        <div id="missingParamsMessage" style="display: none; color: red; text-align: center;">
-            Provide Token Sale Address and Chain ID to preview the token sale.
-        </div>
+  <div class="form-container">
+    <form id="colorForm">
+      <div class="form-group">
+        <label>Token Sale Address:</label>
+        <span id="tokenSaleAddressDisplay">Loading...</span>
+      </div>
+      <div class="form-group">
+        <label>Chain ID:</label>
+        <span id="chainIdDisplay">Loading...</span>
+      </div>
+      <hr />
+      <h3>Color Settings</h3>
+      <p>
+        See below for token sale preview and adjust the colors of the token sale to match your brand or preferences.
+        <b>NOTE:</b> The selected colors are not saved; remember to copy the iframe snippet
+        or URL below before closing this page.
+      </p>
+      <div class="form-group">
+        <label for="bgColorPrimary">Background Color Primary:</label>
+        <input type="color" id="bgColorPrimary" name="bgColorPrimary" value="#F7FAFF">
+        <input type="text" id="bgColorPrimaryHex" name="bgColorPrimaryHex" value="#F7FAFF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+      </div>
+      <div class="form-group">
+        <label for="bgColorSecondary">Background Color Secondary:</label>
+        <input type="color" id="bgColorSecondary" name="bgColorSecondary" value="#FFFFFF">
+        <input type="text" id="bgColorSecondaryHex" name="bgColorSecondaryHex" value="#FFFFFF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+      </div>
+      <div class="form-group">
+        <label for="borderColor">Border Color:</label>
+        <input type="color" id="borderColor" name="borderColor" value="#E8F0FF">
+        <input type="text" id="borderColorHex" name="borderColorHex" value="#E8F0FF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+      </div>
+      <div class="form-group">
+        <label for="ctaPrimary">CTA Primary:</label>
+        <input type="color" id="ctaPrimary" name="ctaPrimary" value="#03A9F4">
+        <input type="text" id="ctaPrimaryHex" name="ctaPrimaryHex" value="#03A9F4" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+      </div>
+      <div class="form-group">
+        <label for="ctaFontColor">CTA Font Color:</label>
+        <input type="color" id="ctaFontColor" name="ctaFontColor" value="#000000">
+        <input type="text" id="ctaFontColorHex" name="ctaFontColorHex" value="#000000" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+      </div>
+      <div class="form-group">
+        <label for="fontColorPrimary">Font Color Primary:</label>
+        <input type="color" id="fontColorPrimary" name="fontColorPrimary" value="#000000">
+        <input type="text" id="fontColorPrimaryHex" name="fontColorPrimaryHex" value="#000000" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+      </div>
+      <div class="form-group">
+        <label for="fontColorSecondary">Font Color Secondary:</label>
+        <input type="color" id="fontColorSecondary" name="fontColorSecondary" value="#6B7483">
+        <input type="text" id="fontColorSecondaryHex" name="fontColorSecondaryHex" value="#6B7483" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+      </div>
+    </form>
+    <div class="url-preview">
+      <textarea id="iframeSnippet" readonly placeholder="Iframe Snippet"></textarea>
+      <button class="copy-button" onclick="copyIFrame(event)">Copy</button>
     </div>
-    <hr style="margin: 4em 0;" />
-    <h1 style="text-align: center;">Preview of token sale across possible states</h1>
-    <hr style="margin: 4em 0;" />
-    <iframe
-        id="iframePreview"
-        src="https://pr-769.pr.tokentool.bitbond.net/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86?chainId=80002&bgColorPrimary=F7FAFF&bgColorSecondary=FFFFFF&fontColorPrimary=000000&fontColorSecondary=6B7483&borderColor=E8F0FF&ctaPrimary=03A9F4&ctaFontColor=000000&previewAllStates=true"
-        name="tokensale"
-    ></iframe>
-    <script>
-        const iframe = document.getElementById('iframePreview');
-        const urlPreview = document.getElementById('urlPreview');
-        const missingParamsMessage = document.getElementById('missingParamsMessage');
-        const baseDomain = 'https://pr-769.pr.tokentool.bitbond.net/tokensale';
+    <div class="url-preview">
+      <a id="urlPreview" href="#" target="_blank">URL Preview</a>
+      <button class="copy-button" onclick="copyURL(event)">Copy</button>
+    </div>
+    <div id="missingParamsMessage" style="display: none; color: red; text-align: center;">
+      Provide Token Sale Address and Chain ID to preview the token sale.
+    </div>
+  </div>
+  <hr style="margin: 4em 0;" />
+  <h1 style="text-align: center;">Preview of token sale across possible states</h1>
+  <hr style="margin: 4em 0;" />
+  <iframe
+    id="iframePreview"
+    src="https://pr-769.pr.tokentool.bitbond.net/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86?chainId=80002&bgColorPrimary=F7FAFF&bgColorSecondary=FFFFFF&fontColorPrimary=000000&fontColorSecondary=6B7483&borderColor=E8F0FF&ctaPrimary=03A9F4&ctaFontColor=000000&previewAllStates=true"
+    name="tokensale"
+  ></iframe>
+  <script>
+    const iframe = document.getElementById('iframePreview');
+    const urlPreview = document.getElementById('urlPreview');
+    const missingParamsMessage = document.getElementById('missingParamsMessage');
+    const baseDomain = 'https://pr-769.pr.tokentool.bitbond.net/tokensale';
 
-        function getURLParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                tokenSaleAddress: params.get('tokenSaleAddress') || '',
-                chainId: params.get('chainId') || ''
-            };
-        }
+    function getURLParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        tokenSaleAddress: params.get('tokenSaleAddress') || '',
+        chainId: params.get('chainId') || ''
+      };
+    }
 
-        function updateIframe() {
-            const params = new URLSearchParams();
+    function updateIframe() {
+      const params = new URLSearchParams();
 
-            // Get Token Sale Address and Chain ID from URL parameters
-            const { tokenSaleAddress, chainId } = getURLParams();
+      // Get Token Sale Address and Chain ID from URL parameters
+      const { tokenSaleAddress, chainId } = getURLParams();
 
-            // Display static text
-            document.getElementById('tokenSaleAddressDisplay').textContent = tokenSaleAddress || 'N/A';
-            document.getElementById('chainIdDisplay').textContent = chainId || 'N/A';
+      // Display static text
+      document.getElementById('tokenSaleAddressDisplay').textContent = tokenSaleAddress || 'N/A';
+      document.getElementById('chainIdDisplay').textContent = chainId || 'N/A';
 
-            // Check if both parameters are provided
-            if (tokenSaleAddress && chainId) {
-                params.set('chainId', chainId);
-                params.set('previewAllStates', 'true');
+      // Check if both parameters are provided
+      if (tokenSaleAddress && chainId) {
+        params.set('chainId', chainId);
+        params.set('previewAllStates', 'true');
 
-                // Get color fields
-                const colorFields = [
-                    'bgColorPrimary',
-                    'bgColorSecondary',
-                    'borderColor',
-                    'ctaPrimary',
-                    'ctaFontColor',
-                    'fontColorPrimary',
-                    'fontColorSecondary'
-                ];
+        // Get color fields
+        const colorFields = [
+          'bgColorPrimary',
+          'bgColorSecondary',
+          'borderColor',
+          'ctaPrimary',
+          'ctaFontColor',
+          'fontColorPrimary',
+          'fontColorSecondary'
+        ];
 
-                colorFields.forEach(field => {
-                    const color = document.getElementById(field).value.substring(1).toUpperCase();
-                    params.set(field, color);
-                });
-
-                const newSrc = `${baseDomain}/${tokenSaleAddress}?${params.toString()}`;
-                iframe.src = newSrc;
-
-                // Update the clickable link
-                urlPreview.href = newSrc;
-                urlPreview.textContent = newSrc;
-
-                // Set iframe snippet
-                const iframeSnippet = `<iframe src="${newSrc}" width="100%" height="1000px" frameborder="0" name="tokensale"></iframe>`;
-                const iframeTextarea = document.getElementById('iframeSnippet');
-                iframeTextarea.value = iframeSnippet;
-                autoResizeTextarea(iframeTextarea);
-
-                // Show iframe and hide message
-                iframe.style.display = 'block';
-                missingParamsMessage.style.display = 'none';
-            } else {
-                // Hide iframe and show message
-                iframe.style.display = 'none';
-                missingParamsMessage.style.display = 'block';
-                urlPreview.href = '#';
-                urlPreview.textContent = 'URL Preview';
-                document.getElementById('iframeSnippet').value = '';
-            }
-        }
-
-        function copyURL(event) {
-            const copyText = urlPreview.href !== window.location.href ? urlPreview.href : '';
-            const button = event.target;
-
-            if (copyText) {
-                navigator.clipboard.writeText(copyText)
-                    .then(() => {
-                        const originalText = button.textContent;
-                        button.textContent = 'Copied!';
-                        button.disabled = true;
-
-                        setTimeout(() => {
-                            button.textContent = originalText;
-                            button.disabled = false;
-                        }, 2000);
-                    })
-                    .catch(() => {
-                        alert('Failed to copy URL.');
-                    });
-            }
-        }
-
-        function copyIFrame(event) {
-            const copyText = document.getElementById('iframeSnippet').value;
-            const button = event.target;
-
-            if (copyText) {
-                navigator.clipboard.writeText(copyText)
-                    .then(() => {
-                        const originalText = button.textContent;
-                        button.textContent = 'Copied!';
-                        button.disabled = true;
-
-                        setTimeout(() => {
-                            button.textContent = originalText;
-                            button.disabled = false;
-                        }, 2000);
-                    })
-                    .catch(() => {
-                        alert('Failed to copy iframe snippet.');
-                    });
-            }
-        }
-
-        // Sync color picker and hex input
-        function syncField(field) {
-            const colorInput = document.getElementById(field);
-            const hexInput = document.getElementById(field + 'Hex');
-
-            colorInput.addEventListener('input', () => {
-                hexInput.value = colorInput.value.toUpperCase();
-                updateIframe();
-            });
-
-            hexInput.addEventListener('input', () => {
-                let value = hexInput.value;
-                if (!value.startsWith('#')) {
-                    value = '#' + value;
-                }
-                if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
-                    colorInput.value = value;
-                    updateIframe();
-                }
-            });
-        }
-
-        function autoResizeTextarea(textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = textarea.scrollHeight + 'px';
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            updateIframe();
-
-            // Initialize color fields
-            const colorFields = [
-                'bgColorPrimary',
-                'bgColorSecondary',
-                'borderColor',
-                'ctaPrimary',
-                'ctaFontColor',
-                'fontColorPrimary',
-                'fontColorSecondary'
-            ];
-
-            colorFields.forEach(syncField);
-
-            // Auto-resize textareas on input
-            const textareas = document.querySelectorAll('.url-preview textarea');
-            textareas.forEach(textarea => {
-                textarea.addEventListener('input', () => autoResizeTextarea(textarea));
-            });
-
-            // Make the URL preview link clickable
-            urlPreview.addEventListener('click', () => {
-                const url = urlPreview.href.trim();
-                if (url && url !== '#') {
-                    window.open(url, '_blank');
-                }
-            });
+        colorFields.forEach(field => {
+          const color = document.getElementById(field).value.substring(1).toUpperCase();
+          params.set(field, color);
         });
-    </script>
+
+        const newSrc = `${baseDomain}/${tokenSaleAddress}?${params.toString()}`;
+        iframe.src = newSrc;
+
+        // Update the clickable link
+        urlPreview.href = newSrc;
+        urlPreview.textContent = newSrc;
+
+        // Set iframe snippet
+        const iframeSnippet = `<iframe src="${newSrc}" width="100%" height="1000px" frameborder="0" name="tokensale"></iframe>`;
+        const iframeTextarea = document.getElementById('iframeSnippet');
+        iframeTextarea.value = iframeSnippet;
+        autoResizeTextarea(iframeTextarea);
+
+        // Show iframe and hide message
+        iframe.style.display = 'block';
+        missingParamsMessage.style.display = 'none';
+      } else {
+        // Hide iframe and show message
+        iframe.style.display = 'none';
+        missingParamsMessage.style.display = 'block';
+        urlPreview.href = '#';
+        urlPreview.textContent = 'URL Preview';
+        document.getElementById('iframeSnippet').value = '';
+      }
+    }
+
+    function copyURL(event) {
+      const copyText = urlPreview.href !== window.location.href ? urlPreview.href : '';
+      const button = event.target;
+
+      if (copyText) {
+        navigator.clipboard.writeText(copyText)
+          .then(() => {
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.disabled = true;
+
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.disabled = false;
+            }, 2000);
+          })
+          .catch(() => {
+            alert('Failed to copy URL.');
+          });
+      }
+    }
+
+    function copyIFrame(event) {
+      const copyText = document.getElementById('iframeSnippet').value;
+      const button = event.target;
+
+      if (copyText) {
+        navigator.clipboard.writeText(copyText)
+          .then(() => {
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.disabled = true;
+
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.disabled = false;
+            }, 2000);
+          })
+          .catch(() => {
+            alert('Failed to copy iframe snippet.');
+          });
+      }
+    }
+
+    // Sync color picker and hex input
+    function syncField(field) {
+      const colorInput = document.getElementById(field);
+      const hexInput = document.getElementById(field + 'Hex');
+
+      colorInput.addEventListener('input', () => {
+        hexInput.value = colorInput.value.toUpperCase();
+        updateIframe();
+      });
+
+      hexInput.addEventListener('input', () => {
+        let value = hexInput.value;
+        if (!value.startsWith('#')) {
+          value = '#' + value;
+        }
+        if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
+          colorInput.value = value;
+          updateIframe();
+        }
+      });
+    }
+
+    function autoResizeTextarea(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateIframe();
+
+      // Initialize color fields
+      const colorFields = [
+        'bgColorPrimary',
+        'bgColorSecondary',
+        'borderColor',
+        'ctaPrimary',
+        'ctaFontColor',
+        'fontColorPrimary',
+        'fontColorSecondary'
+      ];
+
+      colorFields.forEach(syncField);
+
+      // Auto-resize textareas on input
+      const textareas = document.querySelectorAll('.url-preview textarea');
+      textareas.forEach(textarea => {
+        textarea.addEventListener('input', () => autoResizeTextarea(textarea));
+      });
+
+      // Make the URL preview link clickable
+      urlPreview.addEventListener('click', () => {
+        const url = urlPreview.href.trim();
+        if (url && url !== '#') {
+          window.open(url, '_blank');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

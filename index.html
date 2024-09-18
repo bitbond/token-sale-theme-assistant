@@ -65,9 +65,9 @@
             font-family: monospace;
             flex: 1;
             margin-right: 10px;
-            white-space: break-spaces; /* Allows text to wrap */
-            word-break: break-word; /* Breaks long words */
-            min-height: 60px; /* Ensures sufficient height */
+            white-space: break-spaces;
+            word-break: break-word;
+            min-height: 60px;
             display: block;
             font-size: 14px;
             line-height: 24px;
@@ -80,8 +80,8 @@
             margin-right: 10px;
             font-family: monospace;
             height: auto;
-            min-height: 60px; /* Adjust as needed */
-            resize: none; /* Prevents resizing */
+            min-height: 60px;
+            resize: none;
             overflow: hidden;
             font-size: 14px;
             line-height: 24px;
@@ -152,25 +152,21 @@
 <body>
     <div class="form-container">
         <form id="colorForm">
-            <!-- Display Token Sale Address -->
             <div class="form-group">
                 <label>Token Sale Address:</label>
                 <span id="tokenSaleAddressDisplay">Loading...</span>
             </div>
-
-            <!-- Display Chain ID -->
             <div class="form-group">
                 <label>Chain ID:</label>
                 <span id="chainIdDisplay">Loading...</span>
             </div>
-
             <hr />
             <h3>Color Settings</h3>
-            <p>See below for token sale preview and adjust the colors of the token sale to match your brand or preferences.
-              <b>NOTE:</b> The selected colors are not saved, remember to copy the iframe snippet
-              or URL below before closing this page.</p>
-
-            <!-- Existing Color Fields -->
+            <p>
+                See below for token sale preview and adjust the colors of the token sale to match your brand or preferences.
+                <b>NOTE:</b> The selected colors are not saved; remember to copy the iframe snippet
+                or URL below before closing this page.
+            </p>
             <div class="form-group">
                 <label for="bgColorPrimary">Background Color Primary:</label>
                 <input type="color" id="bgColorPrimary" name="bgColorPrimary" value="#F7FAFF">
@@ -193,7 +189,7 @@
             </div>
             <div class="form-group">
                 <label for="ctaFontColor">CTA Font Color:</label>
-                <input type="color" id="ctaFontColor" name="ctaFontColor" value="#FFFFFF">
+                <input type="color" id="ctaFontColor" name="ctaFontColor" value="#000000">
                 <input type="text" id="ctaFontColorHex" name="ctaFontColorHex" value="#000000" maxlength="7" pattern="#[0-9a-fA-F]{6}">
             </div>
             <div class="form-group">
@@ -207,37 +203,30 @@
                 <input type="text" id="fontColorSecondaryHex" name="fontColorSecondaryHex" value="#6B7483" maxlength="7" pattern="#[0-9a-fA-F]{6}">
             </div>
         </form>
-
-        <hr />
-        <h3>Iframe Snippet</h3>
-        <p>Copy and paste this HTML snippet into your website to display the token sale.</p>
         <div class="url-preview">
             <textarea id="iframeSnippet" readonly placeholder="Iframe Snippet"></textarea>
             <button class="copy-button" onclick="copyIFrame(event)">Copy</button>
         </div>
-        <h3>Direct link to the token sale</h3>
-        <p>If you'd rather share the sale direcly without embedding it, you can use the following link.</p>
         <div class="url-preview">
             <a id="urlPreview" href="#" target="_blank">URL Preview</a>
             <button class="copy-button" onclick="copyURL(event)">Copy</button>
         </div>
-
-        <!-- Added Message for Missing Parameters -->
         <div id="missingParamsMessage" style="display: none; color: red; text-align: center;">
             Provide Token Sale Address and Chain ID to preview the token sale.
         </div>
     </div>
-
     <hr style="margin: 4em 0;" />
     <h1 style="text-align: center;">Preview of token sale across possible states</h1>
     <hr style="margin: 4em 0;" />
-    <iframe id="iframePreview" src="https://pr-769.pr.tokentool.bitbond.net/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86?chainId=80002&bgColorPrimary=F7FAFF&bgColorSecondary=FFFFFF&fontColorPrimary=000000&fontColorSecondary=6B7483&borderColor=E8F0FF&ctaPrimary=03A9F4&ctaFontColor=000000&previewAllStates=true" width="100%" height="1000px" frameborder="0" name="tokensale"></iframe>
-
+    <iframe
+        id="iframePreview"
+        src="https://pr-769.pr.tokentool.bitbond.net/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86?chainId=80002&bgColorPrimary=F7FAFF&bgColorSecondary=FFFFFF&fontColorPrimary=000000&fontColorSecondary=6B7483&borderColor=E8F0FF&ctaPrimary=03A9F4&ctaFontColor=000000&previewAllStates=true"
+        name="tokensale"
+    ></iframe>
     <script>
         const iframe = document.getElementById('iframePreview');
         const urlPreview = document.getElementById('urlPreview');
         const missingParamsMessage = document.getElementById('missingParamsMessage');
-
         const baseDomain = 'https://pr-769.pr.tokentool.bitbond.net/tokensale';
 
         function getURLParams() {
@@ -310,18 +299,20 @@
             const button = event.target;
 
             if (copyText) {
-                navigator.clipboard.writeText(copyText).then(() => {
-                    const originalText = button.textContent;
-                    button.textContent = 'Copied!';
-                    button.disabled = true;
+                navigator.clipboard.writeText(copyText)
+                    .then(() => {
+                        const originalText = button.textContent;
+                        button.textContent = 'Copied!';
+                        button.disabled = true;
 
-                    setTimeout(() => {
-                        button.textContent = originalText;
-                        button.disabled = false;
-                    }, 2000);
-                }, () => {
-                    alert('Failed to copy URL.');
-                });
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.disabled = false;
+                        }, 2000);
+                    })
+                    .catch(() => {
+                        alert('Failed to copy URL.');
+                    });
             }
         }
 
@@ -330,18 +321,20 @@
             const button = event.target;
 
             if (copyText) {
-                navigator.clipboard.writeText(copyText).then(() => {
-                    const originalText = button.textContent;
-                    button.textContent = 'Copied!';
-                    button.disabled = true;
+                navigator.clipboard.writeText(copyText)
+                    .then(() => {
+                        const originalText = button.textContent;
+                        button.textContent = 'Copied!';
+                        button.disabled = true;
 
-                    setTimeout(() => {
-                        button.textContent = originalText;
-                        button.disabled = false;
-                    }, 2000);
-                }, () => {
-                    alert('Failed to copy iframe snippet.');
-                });
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.disabled = false;
+                        }, 2000);
+                    })
+                    .catch(() => {
+                        alert('Failed to copy iframe snippet.');
+                    });
             }
         }
 
@@ -372,7 +365,6 @@
             textarea.style.height = textarea.scrollHeight + 'px';
         }
 
-        // Initialize form with URL parameters
         window.addEventListener('DOMContentLoaded', () => {
             updateIframe();
 
@@ -395,10 +387,10 @@
                 textarea.addEventListener('input', () => autoResizeTextarea(textarea));
             });
 
-            // Make the urlPreview textarea clickable
+            // Make the URL preview link clickable
             urlPreview.addEventListener('click', () => {
                 const url = urlPreview.href.trim();
-                if (url) {
+                if (url && url !== '#') {
                     window.open(url, '_blank');
                 }
             });

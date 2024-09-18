@@ -10,6 +10,9 @@
             background-color: #F7FAFF;
             margin: 0;
             padding: 20px;
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 300;
         }
         .form-container {
             background-color: #FFFFFF;
@@ -26,8 +29,10 @@
             margin-bottom: 15px;
         }
         .form-group label {
-            flex: 1;
+            font-size: 16px;
+            line-height: 24px;
             font-weight: 500;
+            flex: 1;
         }
         .form-group input[type="color"],
         .form-group input[type="text"],
@@ -37,6 +42,9 @@
             margin-left: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 300;
         }
         .url-preview {
             background-color: #f3f3f3;
@@ -61,6 +69,9 @@
             word-break: break-word; /* Breaks long words */
             min-height: 60px; /* Ensures sufficient height */
             display: block;
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 300;
         }
         .url-preview textarea {
             border: none;
@@ -72,6 +83,9 @@
             min-height: 60px; /* Adjust as needed */
             resize: none; /* Prevents resizing */
             overflow: hidden;
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 300;
         }
         .copy-button {
             padding: 5px 10px;
@@ -80,6 +94,9 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 300;
         }
         .copy-button:hover {
             background-color: #0288D1;
@@ -88,6 +105,20 @@
             width: 100%;
             height: 1000px;
             border: 0;
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 300;
+        }
+        h1, h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 500;
+        }
+        p {
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 300;
         }
         @media (max-width: 600px) {
             .form-group {
@@ -100,6 +131,9 @@
                 margin-left: 0;
                 margin-top: 5px;
                 width: 100%;
+                font-size: 14px;
+                line-height: 24px;
+                font-weight: 300;
             }
             .url-preview {
                 flex-direction: column;
@@ -108,6 +142,9 @@
             .copy-button {
                 width: 100%;
                 margin-top: 10px;
+                font-size: 14px;
+                line-height: 24px;
+                font-weight: 300;
             }
         }
     </style>
@@ -129,7 +166,7 @@
 
             <hr />
             <h3>Color Settings</h3>
-            <p>Adjust the colors of the token sale to match your brand or preferences.
+            <p>See below for token sale preview and adjust the colors of the token sale to match your brand or preferences.
               <b>NOTE:</b> The selected colors are not saved, remember to copy the iframe snippet
               or URL below before closing this page.</p>
 
@@ -176,14 +213,14 @@
         <p>Copy and paste this HTML snippet into your website to display the token sale.</p>
         <div class="url-preview">
             <textarea id="iframeSnippet" readonly placeholder="Iframe Snippet"></textarea>
-            <button class="copy-button" onclick="copyIFrame()">Copy</button>
-          </div>
-          <h3>Direct link to the token sale</h3>
-          <p>If you'd rather share the sale direcly without embedding it, you can use the following link.</p>
-          <div class="url-preview">
-              <a id="urlPreview" href="#" target="_blank">URL Preview</a>
-              <button class="copy-button" onclick="copyURL()">Copy</button>
-          </div>
+            <button class="copy-button" onclick="copyIFrame(event)">Copy</button>
+        </div>
+        <h3>Direct link to the token sale</h3>
+        <p>If you'd rather share the sale direcly without embedding it, you can use the following link.</p>
+        <div class="url-preview">
+            <a id="urlPreview" href="#" target="_blank">URL Preview</a>
+            <button class="copy-button" onclick="copyURL(event)">Copy</button>
+        </div>
 
         <!-- Added Message for Missing Parameters -->
         <div id="missingParamsMessage" style="display: none; color: red; text-align: center;">
@@ -193,6 +230,7 @@
 
     <hr style="margin: 4em 0;" />
     <h1 style="text-align: center;">Preview of token sale across possible states</h1>
+    <hr style="margin: 4em 0;" />
     <iframe id="iframePreview" src="https://pr-769.pr.tokentool.bitbond.net/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86?chainId=80002&bgColorPrimary=F7FAFF&bgColorSecondary=FFFFFF&fontColorPrimary=000000&fontColorSecondary=6B7483&borderColor=E8F0FF&ctaPrimary=03A9F4&ctaFontColor=000000&previewAllStates=true" width="100%" height="1000px" frameborder="0" name="tokensale"></iframe>
 
     <script>
@@ -267,20 +305,40 @@
             }
         }
 
-        function copyURL() {
+        function copyURL(event) {
             const copyText = urlPreview.href !== window.location.href ? urlPreview.href : '';
+            const button = event.target;
+
             if (copyText) {
                 navigator.clipboard.writeText(copyText).then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.disabled = true;
+
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                    }, 2000);
                 }, () => {
                     alert('Failed to copy URL.');
                 });
             }
         }
 
-        function copyIFrame() {
+        function copyIFrame(event) {
             const copyText = document.getElementById('iframeSnippet').value;
+            const button = event.target;
+
             if (copyText) {
                 navigator.clipboard.writeText(copyText).then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.disabled = true;
+
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                    }, 2000);
                 }, () => {
                     alert('Failed to copy iframe snippet.');
                 });
@@ -335,6 +393,14 @@
             const textareas = document.querySelectorAll('.url-preview textarea');
             textareas.forEach(textarea => {
                 textarea.addEventListener('input', () => autoResizeTextarea(textarea));
+            });
+
+            // Make the urlPreview textarea clickable
+            urlPreview.addEventListener('click', () => {
+                const url = urlPreview.href.trim();
+                if (url) {
+                    window.open(url, '_blank');
+                }
             });
         });
     </script>

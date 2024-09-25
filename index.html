@@ -224,14 +224,14 @@
   <hr style="margin: 4em 0;" />
   <iframe
     id="iframePreview"
-    src="https://pr-769.pr.tokentool.bitbond.net/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86?chainId=80002&bgColorPrimary=F7FAFF&bgColorSecondary=FFFFFF&fontColorPrimary=000000&fontColorSecondary=6B7483&borderColor=E8F0FF&ctaPrimary=03A9F4&ctaFontColor=000000&previewAllStates=true"
+    src="https://tokentool.bitbond.com/tokensale/0x7abb1d0a604d611914968b15b3803a6c08051a86?chainId=80002&bgColorPrimary=F7FAFF&bgColorSecondary=FFFFFF&fontColorPrimary=000000&fontColorSecondary=6B7483&borderColor=E8F0FF&ctaPrimary=03A9F4&ctaFontColor=FFFFFF"
     name="tokensale"
   ></iframe>
   <script>
     const iframe = document.getElementById('iframePreview');
     const urlPreview = document.getElementById('urlPreview');
     const missingParamsMessage = document.getElementById('missingParamsMessage');
-    const baseDomain = 'https://pr-769.pr.tokentool.bitbond.net/tokensale';
+    const baseDomain = 'https://tokentool.bitbond.com/tokensale';
 
     function getURLParams() {
       const params = new URLSearchParams(window.location.search);
@@ -254,7 +254,6 @@
       // Check if both parameters are provided
       if (tokenSaleAddress && chainId) {
         params.set('chainId', chainId);
-        params.set('previewAllStates', 'true');
 
         // Get color fields
         const colorFields = [

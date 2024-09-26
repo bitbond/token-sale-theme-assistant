@@ -14,14 +14,19 @@
       line-height: 24px;
       font-weight: 300;
     }
+
+    a {
+      text-decoration: none;
+      color: #03A9F4;
+    }
+
     .form-container {
       background-color: #FFFFFF;
       padding: 20px;
       border: 1px solid #E8F0FF;
-      border-radius: 8px;
+      border-radius: 4px;
       max-width: 800px;
       margin: 0 auto 20px auto;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .form-group {
       display: flex;
@@ -144,11 +149,16 @@
         line-height: 24px;
         font-weight: 300;
       }
+      #backLink {
+        display: inline-block;
+        margin-bottom: 20px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="form-container">
+    <a id="backLink" href="#" style="display: inline-block; margin-bottom: 20px;">← Back to manage Token Sale</a>
     <form id="colorForm">
       <div class="form-group">
         <label>Token Sale Address:</label>
@@ -188,8 +198,8 @@
       </div>
       <div class="form-group">
         <label for="ctaFontColor">CTA Font Color:</label>
-        <input type="color" id="ctaFontColor" name="ctaFontColor" value="#000000">
-        <input type="text" id="ctaFontColorHex" name="ctaFontColorHex" value="#000000" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+        <input type="color" id="ctaFontColor" name="ctaFontColor" value="#FFFFFF">
+        <input type="text" id="ctaFontColorHex" name="ctaFontColorHex" value="#FFFFFF" maxlength="7" pattern="#[0-9a-fA-F]{6}">
       </div>
       <div class="form-group">
         <label for="fontColorPrimary">Font Color Primary:</label>
@@ -232,6 +242,7 @@
     const urlPreview = document.getElementById('urlPreview');
     const missingParamsMessage = document.getElementById('missingParamsMessage');
     const baseDomain = 'https://tokentool.bitbond.com/tokensale';
+    const backLink = document.getElementById('backLink');
 
     function getURLParams() {
       const params = new URLSearchParams(window.location.search);
@@ -368,8 +379,18 @@
       textarea.style.height = textarea.scrollHeight + 'px';
     }
 
+    function updateBackLink() {
+      const { tokenSaleAddress } = getURLParams();
+      if (tokenSaleAddress) {
+        backLink.href = `https://tokentool.bitbond.com/managetokensale/${tokenSaleAddress}`;
+      } else {
+        backLink.href = '#';
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       updateIframe();
+      updateBackLink();
 
       // Initialize color fields
       const colorFields = [
